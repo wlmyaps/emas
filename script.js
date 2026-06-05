@@ -193,23 +193,88 @@ function displayGapMetrics(data) {
 // ==========================================================
 // 5. GRAFIK ANALIS (MENGGUNAKAN CHART.JS)
 // ==========================================================
-let priceChart = null;
 function displayPriceChart(data) {
     const ctx = document.getElementById('priceChart').getContext('2d');
     const labels = data.map(row => row.Tanggal);
-    const prices = data.map(row => row.Terakhir);
+    const pricesClose = data.map(row => row.Terakhir);
+    const pricesOpen = data.map(row => row.Pembukaan);
     const changes = data.map(row => row.Perubahan);
+    
     if (priceChart) priceChart.destroy();
+    
     priceChart = new Chart(ctx, {
         type: 'line',
-        data: { labels: labels, datasets: [{ label: 'Harga Penutupan (IDR/gram)', data: prices, borderColor: 'rgb(44, 62, 102)', backgroundColor: 'rgba(44, 62, 102, 0.1)', tension: 0.3, fill: true, yAxisID: 'y' }] },
-        options: { responsive: true, maintainAspectRatio: true, interaction: { mode: 'index', intersect: false }, plugins: { tooltip: { callbacks: { label: (context) => `Rp ${context.raw.toLocaleString('id-ID')}` } } } }
+        data: {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Harga Penutupan (Close)',
+                    data: pricesClose,
+                    borderColor: 'rgb(44, 62, 102)',
+                    backgroundColor: 'rgba(44, 62, 102, 0.05)',
+                    tension: 0.3,
+                    fill: false,
+                    yAxisID: 'y'
+                },
+                {
+                    label: 'Harga Pembukaan (Open)',
+                    data: pricesOpen,
+                    borderColor: 'rgb(220, 120, 60)',
+                    backgroundColor: 'rgba(220, 120, 60, 0.05)',
+                    tension: 0.3,
+                    fill: false,
+                    yAxisID: 'y',
+                    borderDash: [5, 5]
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            interaction: { mode: 'index', intersect: false },
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: (context) => {
+                            let label = context.dataset.label || '';
+                            let value = context.raw;
+                            return `${label}: Rp ${value.toLocaleString('id-ID')}`;
+                        }
+                    }
+                }
+            }
+        }
     });
+    
+    // Tombol tampilkan harga (Close + Open)
     document.getElementById('viewPriceBtn').onclick = () => {
-        if (priceChart) { priceChart.data.datasets[0].label = 'Harga Penutupan (IDR/gram)'; priceChart.data.datasets[0].data = prices; priceChart.data.datasets[0].borderColor = 'rgb(44, 62, 102)'; priceChart.options.plugins.tooltip.callbacks.label = (context) => `Rp ${context.raw.toLocaleString('id-ID')}`; priceChart.update(); }
+        if (priceChart) {
+            priceChart.data.datasets[0].data = pricesClose;
+            priceChart.data.datasets[1].data = pricesOpen;
+            priceChart.data.datasets[0].label = 'Harga Penutupan (Close)';
+            priceChart.data.datasets[1].label = 'Harga Pembukaan (Open)';
+            priceChart.options.plugins.tooltip.callbacks.label = (context) => {
+                let label = context.dataset.label || '';
+                return `${label}: Rp ${context.raw.toLocaleString('id-ID')}`;
+            };
+            priceChart.update();
+        }
     };
+    
+    // Tombol tampilkan perubahan persen (hanya 1 dataset)
     document.getElementById('viewChangeBtn').onclick = () => {
-        if (priceChart) { priceChart.data.datasets[0].label = 'Perubahan Harian (%)'; priceChart.data.datasets[0].data = changes; priceChart.data.datasets[0].borderColor = 'rgb(220, 38, 38)'; priceChart.options.plugins.tooltip.callbacks.label = (context) => `${context.raw.toFixed(2)}%`; priceChart.update(); }
+        if (priceChart) {
+            priceChart.data.datasets = [{
+                label: 'Perubahan Harian (%)',
+                data: changes,
+                borderColor: 'rgb(220, 38, 38)',
+                backgroundColor: 'rgba(220, 38, 38, 0.05)',
+                tension: 0.3,
+                fill: false
+            }];
+            priceChart.options.plugins.tooltip.callbacks.label = (context) => `${context.raw.toFixed(2)}%`;
+            priceChart.update();
+        }
     };
 }
 
@@ -304,3 +369,42 @@ document.addEventListener('DOMContentLoaded', function() {
     loadData();
     document.getElementById('analyzeBtn').addEventListener('click', analyzeData);
 });
+
+function displayDataTable(data) {
+    const tbody = document.getElementById('tableBody');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+    // Batasi maksimal 500 baris agar tidak overload (opsional)
+    const rowsToShow = data.slice(0, 500);
+    for (const row of rowsToShow) {
+        const tr = document.createElement('tr');
+        tr.style.borderBottom = '1px solid #e2e8f0';
+        tr.innerHTML = `
+            <td style="padding: 6px 8px;">${row.Tanggal}</td>
+            <td style="padding: 6px 8px; text-align: right;">${row.Terakhir.toLocaleString('id-ID')}</td>
+            <td style="padding: 6px 8px; text-align: right;">${row.Pembukaan.toLocaleString('id-ID')}</td>
+            <td style="padding: 6px 8px; text-align: right;">${row.Tertinggi.toLocaleString('id-ID')}</td>
+            <td style="padding: 6px 8px; text-align: right;">${row.Terendah.toLocaleString('id-ID')}</td>
+            <td style="padding: 6px 8px; text-align: right; color: ${row.Perubahan >= 0 ? 'green' : 'red'}">${row.Perubahan.toFixed(2)}%</td>
+        `;
+        tbody.appendChild(tr);
+    }
+    if (data.length > 500) {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td colspan="6" style="padding: 8px; text-align: center;">... dan ${data.length - 500} baris lainnya (hanya 500 pertama ditampilkan)</td>`;
+        tbody.appendChild(tr);
+    }
+}
+
+if (masterData.length > 0) {
+    const lastDate = masterData[0].TanggalObj; // data terbaru (indeks 0)
+    const firstDate = masterData[masterData.length-1].TanggalObj; // data paling awal
+    // Hitung 60 hari sebelum lastDate
+    const defaultStart = new Date(lastDate);
+    defaultStart.setDate(defaultStart.getDate() - 60);
+    // Pastikan tidak melebihi firstDate
+    const startDateForInput = defaultStart > firstDate ? defaultStart : firstDate;
+    document.getElementById('startDate').value = startDateForInput.toISOString().split('T')[0];
+    document.getElementById('endDate').value = lastDate.toISOString().split('T')[0];
+    analyzeData();
+}
