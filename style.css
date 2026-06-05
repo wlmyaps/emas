@@ -1,0 +1,142 @@
+/* style.css */
+* {
+    box-sizing: border-box;
+    font-family: system-ui, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+body {
+    background-color: #f4f7fc;
+    margin: 0;
+    padding: 20px;
+    color: #1e293b;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    font-size: 1.8rem;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    display: inline-block;
+    padding: 0.5rem 2rem;
+    border-radius: 40px;
+    color: white;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+/* Panel Kontrol */
+.control-panel {
+    background: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+}
+
+.control-panel h2 {
+    margin-top: 0;
+    font-size: 1.3rem;
+    color: #2c3e66;
+}
+
+.date-range {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: flex-end;
+}
+
+.date-input {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.date-input label {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+input[type="date"] {
+    padding: 0.6rem 1rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    background: #f8fafc;
+}
+
+button {
+    background: #2c3e66;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background: #1e2c4a;
+}
+
+/* Grid Hasil */
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+.card {
+    background: white;
+    border-radius: 1rem;
+    padding: 1.2rem 1.5rem;
+    box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+    transition: transform 0.1s ease;
+}
+
+.card.full-width {
+    grid-column: 1 / -1;
+}
+
+.card h3 {
+    margin-top: 0;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e2e8f0;
+    color: #0f172a;
+}
+
+.metric-value {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 0.5rem 0;
+}
+
+.badge {
+    display: inline-block;
+    background: #eef2ff;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-right: 0.5rem;
+}
+
+.chart-controls {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.8rem;
+    justify-content: flex-end;
+}
+
+canvas {
+    max-height: 400px;
+    width: 100%;
+}
