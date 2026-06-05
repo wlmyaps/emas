@@ -1,5 +1,5 @@
 // script.js
-const csvUrl = 'https://wlmyaps.github.io/kurs/Data%20Historis%20GAU_IDR.csv';
+const csvUrl = 'const csvUrl = 'https://raw.githubusercontent.com/wlmyaps/kurs/main/Data%20Historis%20GAU_IDR.csv';';
 let masterData = []; // Untuk menyimpan semua data mentah
 
 // Fungsi untuk memuat data dari CSV
@@ -74,6 +74,51 @@ function analyzeData() {
         alert('Tidak ada data dalam rentang tanggal yang dipilih.');
         return;
     }
+	
+	// Fungsi untuk menghitung kecenderungan naik/turun berdasarkan hari
+function displayDayBehaviorMetrics(data) {
+    const dayStats = {
+        'Monday': { up: 0, total: 0 },
+        'Tuesday': { up: 0, total: 0 },
+        'Wednesday': { up: 0, total: 0 },
+        'Thursday': { up: 0, total: 0 },
+        'Friday': { up: 0, total: 0 }
+    };
+    // Akhiri pekan (Sabtu-Minggu) diabaikan karena data pasar biasanya tidak ada
+    
+    for (const row of data) {
+        const dayName = row.TanggalObj.toLocaleDateString('id-ID', { weekday: 'long' });
+        // Pastikan kita hanya memproses hari yang terdefinisi (Senin-Jumat)
+        if (dayStats[dayName]) {
+            dayStats[dayName].total++;
+            if (row.Perubahan > 0) dayStats[dayName].up++;
+        }
+    }
+    
+    // Cari hari dengan persentase kenaikan tertinggi
+    let maxUpDay = { name: '', percentage: 0 };
+    let maxDownDay = { name: '', percentage: 0 };
+    
+    for (const [day, stats] of Object.entries(dayStats)) {
+        if (stats.total > 0) {
+            const upPercentage = (stats.up / stats.total) * 100;
+            const downPercentage = ((stats.total - stats.up) / stats.total) * 100;
+            if (upPercentage > maxUpDay.percentage) {
+                maxUpDay = { name: day, percentage: upPercentage };
+            }
+            if (downPercentage > maxDownDay.percentage) {
+                maxDownDay = { name: day, percentage: downPercentage };
+            }
+        }
+    }
+    
+    const html = `
+        <div class="metric-value"><span class="badge">📈</span> Hari dengan Kecenderungan Naik: <strong>${maxUpDay.name}</strong> (${maxUpDay.percentage.toFixed(1)}% dari total hari ${maxUpDay.name})</div>
+        <div class="metric-value"><span class="badge">📉</span> Hari dengan Kecenderungan Turun: <strong>${maxDownDay.name}</strong> (${maxDownDay.percentage.toFixed(1)}% dari total hari ${maxDownDay.name})</div>
+        <div class="metric-value"><span class="badge">💡</span> <small>Data dihitung berdasarkan persentase perubahan harga harian (Close vs Close sebelumnya).</small></div>
+    `;
+    document.getElementById('day-behavior-metrics').innerHTML = html;
+}
     
     // Panggil semua fungsi analisis di sini
     displayStreakMetrics(filteredData);
