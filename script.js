@@ -133,8 +133,15 @@ function displayVolatilityMetrics(data) {
 // 3. METRIK PERILAKU HARI (STATISTIK MURNI)
 // ==========================================================
 function displayDayBehaviorMetrics(data) {
-    const dayStats = { 'Monday': { up: 0, total: 0 }, 'Tuesday': { up: 0, total: 0 },
-        'Wednesday': { up: 0, total: 0 }, 'Thursday': { up: 0, total: 0 }, 'Friday': { up: 0, total: 0 } };
+    // Gunakan kunci dalam Bahasa Indonesia sesuai hasil toLocaleDateString('id-ID')
+    const dayStats = {
+        'Senin': { up: 0, total: 0 },
+        'Selasa': { up: 0, total: 0 },
+        'Rabu': { up: 0, total: 0 },
+        'Kamis': { up: 0, total: 0 },
+        'Jumat': { up: 0, total: 0 }
+    };
+    
     for (const row of data) {
         const dayName = row.TanggalObj.toLocaleDateString('id-ID', { weekday: 'long' });
         if (dayStats[dayName]) {
@@ -142,21 +149,29 @@ function displayDayBehaviorMetrics(data) {
             if (row.Perubahan > 0) dayStats[dayName].up++;
         }
     }
+    
     let maxUpDay = { name: '', percentage: 0 };
     let maxDownDay = { name: '', percentage: 0 };
+    
     for (const [day, stats] of Object.entries(dayStats)) {
         if (stats.total > 0) {
             const upPercentage = (stats.up / stats.total) * 100;
             const downPercentage = ((stats.total - stats.up) / stats.total) * 100;
-            if (upPercentage > maxUpDay.percentage) { maxUpDay = { name: day, percentage: upPercentage }; }
-            if (downPercentage > maxDownDay.percentage) { maxDownDay = { name: day, percentage: downPercentage }; }
+            if (upPercentage > maxUpDay.percentage) {
+                maxUpDay = { name: day, percentage: upPercentage };
+            }
+            if (downPercentage > maxDownDay.percentage) {
+                maxDownDay = { name: day, percentage: downPercentage };
+            }
         }
     }
-    document.getElementById('day-behavior-metrics').innerHTML = `
+    
+    const html = `
         <div class="metric-value"><span class="badge">📈</span> Hari dengan Kecenderungan Naik: <strong>${maxUpDay.name}</strong> (${maxUpDay.percentage.toFixed(1)}% dari total hari ${maxUpDay.name})</div>
         <div class="metric-value"><span class="badge">📉</span> Hari dengan Kecenderungan Turun: <strong>${maxDownDay.name}</strong> (${maxDownDay.percentage.toFixed(1)}% dari total hari ${maxDownDay.name})</div>
         <div class="metric-value"><span class="badge">💡</span> <small>Data dihitung berdasarkan persentase perubahan harga harian (Close vs Close sebelumnya).</small></div>
     `;
+    document.getElementById('day-behavior-metrics').innerHTML = html;
 }
 
 // ==========================================================
