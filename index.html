@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📊 Analisis Statistik GAU/IDR</title>
+    <!-- Tautan ke CSS dan library eksternal akan ditambahkan di sini -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <!-- PapaParse CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📈 Modul Analisis Statistik GAU/IDR</h1>
+        </header>
+
+        <!-- Panel Kontrol: Pilih Rentang Tanggal -->
+        <section class="control-panel">
+            <h2>🗓️ Pilih Rentang Data</h2>
+            <div class="date-range">
+                <div class="date-input">
+                    <label>Dari Tanggal:</label>
+                    <input type="date" id="startDate" value="2025-01-01">
+                </div>
+                <div class="date-input">
+                    <label>Sampai Tanggal:</label>
+                    <input type="date" id="endDate" value="2026-06-05">
+                </div>
+                <button id="analyzeBtn">🔍 Analisis Data</button>
+            </div>
+        </section>
+
+        <!-- Panel Hasil Analisis -->
+        <div class="results-grid">
+            <!-- Blok 1: Metrik Tren Beruntun -->
+            <div class="card">
+                <h3>🏃‍♂️ 1. Metrik Tren Beruntun (Streak)</h3>
+                <div id="streak-metrics">Memuat data...</div>
+            </div>
+
+            <!-- Blok 2: Metrik Gejolak -->
+            <div class="card">
+                <h3>🌋 2. Metrik Gejolak (Volatilitas)</h3>
+                <div id="volatility-metrics">Memuat data...</div>
+            </div>
+
+            <!-- Blok 3: Metrik Perilaku Hari -->
+            <div class="card">
+                <h3>📅 3. Metrik Perilaku Hari</h3>
+                <div id="day-behavior-metrics">Memuat data...</div>
+            </div>
+
+            <!-- Blok 4: Metrik Lompatan Pasar -->
+            <div class="card">
+                <h3>🏃 4. Metrik Lompatan Pasar (Gap)</h3>
+                <div id="gap-metrics">Memuat data...</div>
+            </div>
+
+            <!-- Blok 5: Grafik Analis -->
+            <div class="card full-width">
+                <h3>📊 5. Grafik Analis (Harga & Perubahan)</h3>
+                <canvas id="priceChart" width="400" height="200"></canvas>
+                <div class="chart-controls">
+                    <button id="viewPriceBtn">💰 Tampilkan Harga (IDR)</button>
+                    <button id="viewChangeBtn">📉 Tampilkan Perubahan (%)</button>
+                </div>
+            </div>
+
+            <!-- Blok 6: Distribusi Harga -->
+            <div class="card">
+                <h3>🏘️ 6. Distribusi Harga (Zona Konsolidasi)</h3>
+                <div id="distribution-metrics">Memuat data...</div>
+            </div>
+
+            <!-- Blok 7: Rekor Range -->
+            <div class="card">
+                <h3>🏆 7. Rekor Range (Nilai Ekstrem)</h3>
+                <div id="extreme-values">Memuat data...</div>
+            </div>
+
+            <!-- Blok 8: Rasio Gejolak Searah -->
+            <div class="card">
+                <h3>📈/📉 8. Rasio Gejolak Searah</h3>
+                <div id="direction-volatility">Memuat data...</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
