@@ -1,9 +1,9 @@
-// script.js
-// 1. PASTIKAN URL INI SUDAH BENAR (File mentah dari GitHub)
+// script.js - VERSI FINAL SUDAH DIPERBAIKI
 const csvUrl = 'https://raw.githubusercontent.com/wlmyaps/kurs/main/Data%20Historis%20GAU_IDR.csv';
-let masterData = []; // Tempat menyimpan semua data
+let masterData = [];
+let priceChart = null; // DEKLARASI GLOBAL
 
-// Fungsi untuk memuat data dari CSV
+// ==================== LOAD DATA ====================
 function loadData() {
     console.log("Mencoba memuat data dari:", csvUrl);
     Papa.parse(csvUrl, {
@@ -13,17 +13,11 @@ function loadData() {
         skipEmptyLines: true,
         complete: function(results) {
             console.log('Data berhasil dimuat, jumlah baris:', results.data.length);
-            if (results.errors && results.errors.length > 0) {
-                console.warn('Ada error saat parsing:', results.errors);
-            }
-            // Proses data: bersihkan dan konversi tipe data
             masterData = results.data.map(row => {
                 if (!row.Tanggal) return null;
                 const dateParts = row.Tanggal.split('/');
-                // Format: DD/MM/YYYY -> new Date(YYYY, MM-1, DD)
                 const formattedDate = new Date(`${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`);
                 if (isNaN(formattedDate)) return null;
-                // Fungsi untuk bersihkan angka dari titik dan koma
                 const cleanNumber = (str) => {
                     if (!str || str === '') return NaN;
                     return parseFloat(str.replace(/\./g, '').replace(',', '.'));
@@ -40,26 +34,29 @@ function loadData() {
                 };
             }).filter(row => row && !isNaN(row.Terakhir) && !isNaN(row.TanggalObj));
             
-            console.log('Data siap diproses:', masterData.length, 'entri');
+            console.log('Data siap:', masterData.length, 'entri');
             if (masterData.length > 0) {
-                // Set range tanggal otomatis berdasarkan data terakhir
-                const minDate = masterData[masterData.length-1].TanggalObj.toISOString().split('T')[0];
-                const maxDate = masterData[0].TanggalObj.toISOString().split('T')[0];
-                document.getElementById('startDate').value = minDate;
-                document.getElementById('endDate').value = maxDate;
-                analyzeData(); // Panggil semua fungsi analisis
+                // Set default range 60 HARI TERAKHIR
+                const lastDate = masterData[0].TanggalObj;
+                const firstDate = masterData[masterData.length-1].TanggalObj;
+                const defaultStart = new Date(lastDate);
+                defaultStart.setDate(defaultStart.getDate() - 60);
+                const startDateForInput = defaultStart > firstDate ? defaultStart : firstDate;
+                document.getElementById('startDate').value = startDateForInput.toISOString().split('T')[0];
+                document.getElementById('endDate').value = lastDate.toISOString().split('T')[0];
+                analyzeData();
             } else {
-                alert('Data CSV tidak valid atau kosong!');
+                alert('Data CSV kosong atau tidak valid!');
             }
         },
         error: function(error) {
             console.error('Gagal memuat CSV:', error);
-            alert('Gagal memuat data CSV. Periksa koneksi dan URL.\nError: ' + (error.message || 'Unknown error'));
+            alert('Gagal memuat data CSV.\nError: ' + (error.message || 'Unknown error'));
         }
     });
 }
 
-// Fungsi untuk filter data berdasarkan range tanggal
+// ==================== FILTER TANGGAL ====================
 function getDataByDateRange(startDateStr, endDateStr) {
     const start = new Date(startDateStr);
     const end = new Date(endDateStr);
@@ -68,16 +65,13 @@ function getDataByDateRange(startDateStr, endDateStr) {
     return masterData.filter(row => row.TanggalObj >= start && row.TanggalObj <= end);
 }
 
-// ==========================================================
-// 1. METRIK TREN BERUNTUN (STREAK)
-// ==========================================================
+// ==================== 1. STREAK ====================
 function displayStreakMetrics(data) {
     let longestCloseDown = 0, currentCloseDown = 0;
     let longestCloseUp = 0, currentCloseUp = 0;
     let longestOpenDown = 0, currentOpenDown = 0;
     let longestOpenUp = 0, currentOpenUp = 0;
-    let sumDailyChanges = 0;
-    let changeCount = 0;
+    let sumDailyChanges = 0, changeCount = 0;
 
     for (let i = 0; i < data.length; i++) {
         const close = data[i].Terakhir;
@@ -110,13 +104,9 @@ function displayStreakMetrics(data) {
     `;
 }
 
-// ==========================================================
-// 2. METRIK GEJOLAK (VOLATILITAS)
-// ==========================================================
+// ==================== 2. VOLATILITAS ====================
 function displayVolatilityMetrics(data) {
-    let totalSpike = 0;
-    let maxSpike = 0;
-    let maxSpikeDate = '';
+    let totalSpike = 0, maxSpike = 0, maxSpikeDate = '';
     for (const row of data) {
         const spike = row.Tertinggi - row.Terendah;
         totalSpike += spike;
@@ -129,19 +119,12 @@ function displayVolatilityMetrics(data) {
     `;
 }
 
-// ==========================================================
-// 3. METRIK PERILAKU HARI (STATISTIK MURNI)
-// ==========================================================
+// ==================== 3. PERILAKU HARI ====================
 function displayDayBehaviorMetrics(data) {
-    // Gunakan kunci dalam Bahasa Indonesia sesuai hasil toLocaleDateString('id-ID')
     const dayStats = {
-        'Senin': { up: 0, total: 0 },
-        'Selasa': { up: 0, total: 0 },
-        'Rabu': { up: 0, total: 0 },
-        'Kamis': { up: 0, total: 0 },
-        'Jumat': { up: 0, total: 0 }
+        'Senin': { up: 0, total: 0 }, 'Selasa': { up: 0, total: 0 },
+        'Rabu': { up: 0, total: 0 }, 'Kamis': { up: 0, total: 0 }, 'Jumat': { up: 0, total: 0 }
     };
-    
     for (const row of data) {
         const dayName = row.TanggalObj.toLocaleDateString('id-ID', { weekday: 'long' });
         if (dayStats[dayName]) {
@@ -149,34 +132,24 @@ function displayDayBehaviorMetrics(data) {
             if (row.Perubahan > 0) dayStats[dayName].up++;
         }
     }
-    
     let maxUpDay = { name: '', percentage: 0 };
     let maxDownDay = { name: '', percentage: 0 };
-    
     for (const [day, stats] of Object.entries(dayStats)) {
         if (stats.total > 0) {
             const upPercentage = (stats.up / stats.total) * 100;
             const downPercentage = ((stats.total - stats.up) / stats.total) * 100;
-            if (upPercentage > maxUpDay.percentage) {
-                maxUpDay = { name: day, percentage: upPercentage };
-            }
-            if (downPercentage > maxDownDay.percentage) {
-                maxDownDay = { name: day, percentage: downPercentage };
-            }
+            if (upPercentage > maxUpDay.percentage) maxUpDay = { name: day, percentage: upPercentage };
+            if (downPercentage > maxDownDay.percentage) maxDownDay = { name: day, percentage: downPercentage };
         }
     }
-    
-    const html = `
+    document.getElementById('day-behavior-metrics').innerHTML = `
         <div class="metric-value"><span class="badge">📈</span> Hari dengan Kecenderungan Naik: <strong>${maxUpDay.name}</strong> (${maxUpDay.percentage.toFixed(1)}% dari total hari ${maxUpDay.name})</div>
         <div class="metric-value"><span class="badge">📉</span> Hari dengan Kecenderungan Turun: <strong>${maxDownDay.name}</strong> (${maxDownDay.percentage.toFixed(1)}% dari total hari ${maxDownDay.name})</div>
         <div class="metric-value"><span class="badge">💡</span> <small>Data dihitung berdasarkan persentase perubahan harga harian (Close vs Close sebelumnya).</small></div>
     `;
-    document.getElementById('day-behavior-metrics').innerHTML = html;
 }
 
-// ==========================================================
-// 4. METRIK LOMPATAN PASAR (GAP)
-// ==========================================================
+// ==================== 4. GAP ====================
 function displayGapMetrics(data) {
     let totalGap = 0, gapCount = 0;
     for (let i = 1; i < data.length; i++) {
@@ -190,9 +163,7 @@ function displayGapMetrics(data) {
     `;
 }
 
-// ==========================================================
-// 5. GRAFIK ANALIS (MENGGUNAKAN CHART.JS)
-// ==========================================================
+// ==================== 5. GRAFIK (CLOSE + OPEN) ====================
 function displayPriceChart(data) {
     const ctx = document.getElementById('priceChart').getContext('2d');
     const labels = data.map(row => row.Tanggal);
@@ -207,70 +178,30 @@ function displayPriceChart(data) {
         data: {
             labels: labels,
             datasets: [
-                {
-                    label: 'Harga Penutupan (Close)',
-                    data: pricesClose,
-                    borderColor: 'rgb(44, 62, 102)',
-                    backgroundColor: 'rgba(44, 62, 102, 0.05)',
-                    tension: 0.3,
-                    fill: false,
-                    yAxisID: 'y'
-                },
-                {
-                    label: 'Harga Pembukaan (Open)',
-                    data: pricesOpen,
-                    borderColor: 'rgb(220, 120, 60)',
-                    backgroundColor: 'rgba(220, 120, 60, 0.05)',
-                    tension: 0.3,
-                    fill: false,
-                    yAxisID: 'y',
-                    borderDash: [5, 5]
-                }
+                { label: 'Harga Penutupan (Close)', data: pricesClose, borderColor: 'rgb(44, 62, 102)', backgroundColor: 'rgba(44, 62, 102, 0.05)', tension: 0.3, fill: false },
+                { label: 'Harga Pembukaan (Open)', data: pricesOpen, borderColor: 'rgb(220, 120, 60)', backgroundColor: 'rgba(220, 120, 60, 0.05)', tension: 0.3, fill: false, borderDash: [5, 5] }
             ]
         },
         options: {
-            responsive: true,
-            maintainAspectRatio: true,
-            interaction: { mode: 'index', intersect: false },
-            plugins: {
-                tooltip: {
-                    callbacks: {
-                        label: (context) => {
-                            let label = context.dataset.label || '';
-                            let value = context.raw;
-                            return `${label}: Rp ${value.toLocaleString('id-ID')}`;
-                        }
-                    }
-                }
-            }
+            responsive: true, maintainAspectRatio: true, interaction: { mode: 'index', intersect: false },
+            plugins: { tooltip: { callbacks: { label: (context) => `${context.dataset.label}: Rp ${context.raw.toLocaleString('id-ID')}` } } }
         }
     });
     
-    // Tombol tampilkan harga (Close + Open)
     document.getElementById('viewPriceBtn').onclick = () => {
         if (priceChart) {
-            priceChart.data.datasets[0].data = pricesClose;
-            priceChart.data.datasets[1].data = pricesOpen;
-            priceChart.data.datasets[0].label = 'Harga Penutupan (Close)';
-            priceChart.data.datasets[1].label = 'Harga Pembukaan (Open)';
-            priceChart.options.plugins.tooltip.callbacks.label = (context) => {
-                let label = context.dataset.label || '';
-                return `${label}: Rp ${context.raw.toLocaleString('id-ID')}`;
-            };
+            priceChart.data.datasets = [
+                { label: 'Harga Penutupan (Close)', data: pricesClose, borderColor: 'rgb(44, 62, 102)', tension: 0.3, fill: false },
+                { label: 'Harga Pembukaan (Open)', data: pricesOpen, borderColor: 'rgb(220, 120, 60)', tension: 0.3, fill: false, borderDash: [5, 5] }
+            ];
+            priceChart.options.plugins.tooltip.callbacks.label = (context) => `${context.dataset.label}: Rp ${context.raw.toLocaleString('id-ID')}`;
             priceChart.update();
         }
     };
-    
-    // Tombol tampilkan perubahan persen (hanya 1 dataset)
     document.getElementById('viewChangeBtn').onclick = () => {
         if (priceChart) {
             priceChart.data.datasets = [{
-                label: 'Perubahan Harian (%)',
-                data: changes,
-                borderColor: 'rgb(220, 38, 38)',
-                backgroundColor: 'rgba(220, 38, 38, 0.05)',
-                tension: 0.3,
-                fill: false
+                label: 'Perubahan Harian (%)', data: changes, borderColor: 'rgb(220, 38, 38)', backgroundColor: 'rgba(220, 38, 38, 0.05)', tension: 0.3, fill: false
             }];
             priceChart.options.plugins.tooltip.callbacks.label = (context) => `${context.raw.toFixed(2)}%`;
             priceChart.update();
@@ -278,9 +209,7 @@ function displayPriceChart(data) {
     };
 }
 
-// ==========================================================
-// 6. METRIK DISTRIBUSI HARGA (ZONA KONSOLIDASI)
-// ==========================================================
+// ==================== 6. DISTRIBUSI HARGA ====================
 function displayDistributionMetrics(data) {
     const prices = data.map(row => row.Terakhir);
     const minPrice = Math.min(...prices);
@@ -294,15 +223,15 @@ function displayDistributionMetrics(data) {
     let maxBin = bins.reduce((max, bin) => bin.count > max.count ? bin : max, { count: 0 });
     let html = '<ul style="margin:0; padding-left:1.2rem;">';
     for (const bin of bins) {
-        if (bin.count > 0) { html += `<li>Rp ${bin.min.toLocaleString('id-ID', {maximumFractionDigits:0})} - Rp ${bin.max.toLocaleString('id-ID', {maximumFractionDigits:0})}: <strong>${bin.count} hari</strong>${bin === maxBin ? ' (Zona Konsolidasi Terkuat)' : ''}</li>`; }
+        if (bin.count > 0) {
+            html += `<li>Rp ${bin.min.toLocaleString('id-ID', {maximumFractionDigits:0})} - Rp ${bin.max.toLocaleString('id-ID', {maximumFractionDigits:0})}: <strong>${bin.count} hari</strong>${bin === maxBin ? ' (Zona Konsolidasi Terkuat)' : ''}</li>`;
+        }
     }
     html += '</ul>';
     document.getElementById('distribution-metrics').innerHTML = html;
 }
 
-// ==========================================================
-// 7. METRIK REKOR RANGE (NILAI EKSTREM)
-// ==========================================================
+// ==================== 7. EKSTREM ====================
 function displayExtremeValues(data) {
     let maxPrice = -Infinity, maxDate = '';
     let minPrice = Infinity, minDate = '';
@@ -316,9 +245,7 @@ function displayExtremeValues(data) {
     `;
 }
 
-// ==========================================================
-// 8. RASIO GEJOLAK SEARAH (UPWARD VS DOWNWARD VOLATILITY)
-// ==========================================================
+// ==================== 8. GEJOLAK SEARAH ====================
 function displayDirectionalVolatility(data) {
     let upDaySpikes = 0, upDayCount = 0;
     let downDaySpikes = 0, downDayCount = 0;
@@ -336,9 +263,33 @@ function displayDirectionalVolatility(data) {
     `;
 }
 
-// ==========================================================
-// FUNGSI UTAMA UNTUK MENJALANKAN SEMUA ANALISIS
-// ==========================================================
+// ==================== 9. TABEL DATA ====================
+function displayDataTable(data) {
+    const tbody = document.getElementById('tableBody');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+    const rowsToShow = data.slice(0, 500);
+    for (const row of rowsToShow) {
+        const tr = document.createElement('tr');
+        tr.style.borderBottom = '1px solid #e2e8f0';
+        tr.innerHTML = `
+            <td style="padding: 6px 8px;">${row.Tanggal}</td>
+            <td style="padding: 6px 8px; text-align: right;">${row.Terakhir.toLocaleString('id-ID')}</td>
+            <td style="padding: 6px 8px; text-align: right;">${row.Pembukaan.toLocaleString('id-ID')}</td>
+            <td style="padding: 6px 8px; text-align: right;">${row.Tertinggi.toLocaleString('id-ID')}</td>
+            <td style="padding: 6px 8px; text-align: right;">${row.Terendah.toLocaleString('id-ID')}</td>
+            <td style="padding: 6px 8px; text-align: right; color: ${row.Perubahan >= 0 ? 'green' : 'red'}">${row.Perubahan.toFixed(2)}%</td>
+        `;
+        tbody.appendChild(tr);
+    }
+    if (data.length > 500) {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td colspan="6" style="padding: 8px; text-align: center;">... dan ${data.length - 500} baris lainnya (hanya 500 pertama ditampilkan)</td>`;
+        tbody.appendChild(tr);
+    }
+}
+
+// ==================== ANALISIS UTAMA ====================
 function analyzeData() {
     let startDate = document.getElementById('startDate').value;
     let endDate = document.getElementById('endDate').value;
@@ -362,49 +313,11 @@ function analyzeData() {
     displayDistributionMetrics(filteredData);
     displayExtremeValues(filteredData);
     displayDirectionalVolatility(filteredData);
+    displayDataTable(filteredData); // <-- PANGGIL TABEL
 }
 
-// Jalankan fungsi loadData saat halaman selesai dimuat
+// ==================== START ====================
 document.addEventListener('DOMContentLoaded', function() {
     loadData();
     document.getElementById('analyzeBtn').addEventListener('click', analyzeData);
 });
-
-function displayDataTable(data) {
-    const tbody = document.getElementById('tableBody');
-    if (!tbody) return;
-    tbody.innerHTML = '';
-    // Batasi maksimal 500 baris agar tidak overload (opsional)
-    const rowsToShow = data.slice(0, 500);
-    for (const row of rowsToShow) {
-        const tr = document.createElement('tr');
-        tr.style.borderBottom = '1px solid #e2e8f0';
-        tr.innerHTML = `
-            <td style="padding: 6px 8px;">${row.Tanggal}</td>
-            <td style="padding: 6px 8px; text-align: right;">${row.Terakhir.toLocaleString('id-ID')}</td>
-            <td style="padding: 6px 8px; text-align: right;">${row.Pembukaan.toLocaleString('id-ID')}</td>
-            <td style="padding: 6px 8px; text-align: right;">${row.Tertinggi.toLocaleString('id-ID')}</td>
-            <td style="padding: 6px 8px; text-align: right;">${row.Terendah.toLocaleString('id-ID')}</td>
-            <td style="padding: 6px 8px; text-align: right; color: ${row.Perubahan >= 0 ? 'green' : 'red'}">${row.Perubahan.toFixed(2)}%</td>
-        `;
-        tbody.appendChild(tr);
-    }
-    if (data.length > 500) {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `<td colspan="6" style="padding: 8px; text-align: center;">... dan ${data.length - 500} baris lainnya (hanya 500 pertama ditampilkan)</td>`;
-        tbody.appendChild(tr);
-    }
-}
-
-if (masterData.length > 0) {
-    const lastDate = masterData[0].TanggalObj; // data terbaru (indeks 0)
-    const firstDate = masterData[masterData.length-1].TanggalObj; // data paling awal
-    // Hitung 60 hari sebelum lastDate
-    const defaultStart = new Date(lastDate);
-    defaultStart.setDate(defaultStart.getDate() - 60);
-    // Pastikan tidak melebihi firstDate
-    const startDateForInput = defaultStart > firstDate ? defaultStart : firstDate;
-    document.getElementById('startDate').value = startDateForInput.toISOString().split('T')[0];
-    document.getElementById('endDate').value = lastDate.toISOString().split('T')[0];
-    analyzeData();
-}
