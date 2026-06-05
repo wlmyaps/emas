@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ensiklopedia Kosmik: Shio, Zodiak, Planet, Elemen & Weton</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.0/index.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                    colors: {
+                        cosmic: {
+                            900: '#0a0a1a',
+                            800: '#12122a',
+                            700: '#1a1a3a',
+                            600: '#2a2a4a',
+                            500: '#3a3a5a',
+                        },
+                        gold: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'fade-in': 'fadeIn 0.5s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3a 50%, #0f0f2a 100%);
+            min-height: 100vh;
+            color: #e2e8f0;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-hover:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(251, 191, 36, 0.5);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 40px -10px rgba(251, 191, 36, 0.3);
+        }
+        .tab-active {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #0a0a1a;
+            font-weight: 700;
+        }
+        .card-gradient-shio { background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(239, 68, 68, 0.05)); border-color: rgba(239, 68, 68, 0.3); }
+        .card-gradient-zodiak { background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(168, 85, 247, 0.05)); border-color: rgba(168, 85, 247, 0.3); }
+        .card-gradient-planet { background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.05)); border-color: rgba(59, 130, 246, 0.3); }
+        .card-gradient-elemen { background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0.05)); border-color: rgba(34, 197, 94, 0.3); }
+        .card-gradient-weton { background: linear-gradient(135deg, rgba(251, 191, 36, 0.1), rgba(251, 191, 36, 0.05)); border-color: rgba(251, 191, 36, 0.3); }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        .detail-card {
+            transition: all 0.3s ease;
+        }
+        .detail-card:hover {
+            transform: scale(1.02);
+        }
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+        .sparkle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: #fbbf24;
+            border-radius: 50%;
+            animation: sparkle 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Hero Section -->
+    <header class="relative min-h-screen flex flex-col items-center justify-center px-4 py-20 overflow-hidden">
+        <div class="absolute inset-0 overflow-hidden pointer-events-none">
+            <div class="sparkle" style="top: 10%; left: 20%; animation-delay: 0s;"></div>
+            <div class="sparkle" style="top: 30%; left: 80%; animation-delay: 1s;"></div>
+            <div class="sparkle" style="top: 60%; left: 10%; animation-delay: 2s;"></div>
+            <div class="sparkle" style="top: 80%; left: 70%; animation-delay: 0.5s;"></div>
+            <div class="sparkle" style="top: 20%; left: 50%; animation-delay: 1.5s;"></div>
+            <div class="sparkle" style="top: 70%; left: 40%; animation-delay: 2.5s;"></div>
+        </div>
+        
+        <div class="relative z-10 text-center max-w-5xl mx-auto">
+            <div class="mb-8 animate-float">
+                <img src="https://wlmyaps.github.io/cosmic/12%20astrology.png" alt="Kosmik" class="w-full max-w-2xl mx-auto rounded-2xl shadow-2xl border-2 border-gold-500/30">
+            </div>
+            <h1 class="text-5xl md:text-7xl font-black mb-4 bg-gradient-to-r from-gold-400 via-yellow-300 to-gold-500 bg-clip-text text-transparent drop-shadow-lg">
+                Ensiklopedia Kosmik
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 mb-2">Shio • Zodiak • Planet • Elemen • Weton</p>
+            <p class="text-base text-gray-400 max-w-2xl mx-auto mb-12">
+                Panduan lengkap dan komprehensif mengenai astrologi, astronomi, dan kalender tradisional. Jelajahi misteri alam semesta dan warisan leluhur dalam satu tempat.
+            </p>
+            <button onclick="document.getElementById('main-content').scrollIntoView({behavior: 'smooth'})" 
+                    class="px-8 py-4 bg-gradient-to-r from-gold-500 to-gold-600 text-cosmic-900 font-bold rounded-full text-lg hover:scale-105 transition-transform shadow-lg shadow-gold-500/30">
+                Jelajahi Sekarang ↓
+            </button>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <div id="main-content" class="sticky top-0 z-50 glass border-b border-white/10 py-4 px-4">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-center gap-2 md:gap-4 overflow-x-auto scrollbar-hide">
+            <button onclick="switchTab('shio')" id="tab-shio" class="tab-btn px-6 py-3 rounded-full glass tab-active transition-all whitespace-nowrap">
+                🐉 Shio (12)
+            </button>
+            <button onclick="switchTab('zodiak')" id="tab-zodiak" class="tab-btn px-6 py-3 rounded-full glass transition-all whitespace-nowrap">
+                ✨ Zodiak (12)
+            </button>
+            <button onclick="switchTab('planet')" id="tab-planet" class="tab-btn px-6 py-3 rounded-full glass transition-all whitespace-nowrap">
+                🪐 Planet (8)
+            </button>
+            <button onclick="switchTab('elemen')" id="tab-elemen" class="tab-btn px-6 py-3 rounded-full glass transition-all whitespace-nowrap">
+                🔥 Elemen (5)
+            </button>
+            <button onclick="switchTab('weton')" id="tab-weton" class="tab-btn px-6 py-3 rounded-full glass transition-all whitespace-nowrap">
+                📅 Weton (35)
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-12">
+
+        <!-- SHIO SECTION -->
+        <section id="content-shio" class="tab-content animate-fade-in">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-red-400 to-orange-400 bg-clip-text text-transparent">
+                    12 Shio Tiongkok
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Shio adalah siklus 12 tahun dalam astrologi Tionghoa. Setiap tahun diwakili oleh hewan dan karakteristiknya. Berikut data lengkap semua shio beserta tahun, elemen, sifat, dan keberuntungan.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="shio-grid">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+
+        <!-- ZODIAK SECTION -->
+        <section id="content-zodiak" class="tab-content hidden">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                    12 Zodiak Barat
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Zodiak Barat membagi lingkaran ekliptika menjadi 12 bagian, masing-masing 30°. Berdasarkan posisi matahari saat kelahiran. Berikut data lengkap semua zodiak.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="zodiak-grid">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+
+        <!-- PLANET SECTION -->
+        <section id="content-planet" class="tab-content hidden">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                    8 Planet Tata Surya
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Tata surya kita terdiri dari 8 planet yang mengelilingi matahari. Berikut data astronomi lengkap untuk setiap planet.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="planet-grid">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+
+        <!-- ELEMEN SECTION -->
+        <section id="content-elemen" class="tab-content hidden">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
+                    5 Elemen (Wu Xing)
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Lima elemen (Wu Xing) adalah konsep fundamental dalam filosofi Tiongkok yang menjelaskan interaksi dan hubungan antar fenomena alam.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="elemen-grid">
+                <!-- Populated by JS -->
+            </div>
+            <div class="mt-12 glass rounded-2xl p-8 border border-green-400/30">
+                <h3 class="text-2xl font-bold mb-4 text-green-400">Siklus Wu Xing</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="p-6 rounded-xl bg-green-500/10 border border-green-500/30">
+                        <h4 class="text-xl font-bold mb-2 text-green-300">🔄 Siklus Generatif (Saling Melahirkan)</h4>
+                        <p class="text-gray-300 mb-2">Kayu → Api → Tanah → Logam → Air → Kayu</p>
+                        <ul class="text-sm text-gray-400 space-y-1">
+                            <li>• Kayu menghidupkan Api (kayu dibakar)</li>
+                            <li>• Api menghasilkan Tanah (abu)</li>
+                            <li>• Tanah membentuk Logam (mineral)</li>
+                            <li>• Logam mengumpulkan Air (kondensasi)</li>
+                            <li>• Air menumbuhkan Kayu (irigasi)</li>
+                        </ul>
+                    </div>
+                    <div class="p-6 rounded-xl bg-red-500/10 border border-red-500/30">
+                        <h4 class="text-xl font-bold mb-2 text-red-300">⚔️ Siklus Destruktif (Saling Mengalahkan)</h4>
+                        <p class="text-gray-300 mb-2">Kayu → Tanah → Air → Api → Logam → Kayu</p>
+                        <ul class="text-sm text-gray-400 space-y-1">
+                            <li>• Kayu mengalahkan Tanah (akar menembus tanah)</li>
+                            <li>• Tanah menahan Air (bendungan)</li>
+                            <li>• Air memadamkan Api</li>
+                            <li>• Api melelehkan Logam</li>
+                            <li>• Logam menebang Kayu (kapak)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WETON SECTION -->
+        <section id="content-weton" class="tab-content hidden">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-gold-400 to-yellow-400 bg-clip-text text-transparent">
+                    35 Weton Jawa
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">
+                    Weton adalah kombinasi hari (7 hari) dan pasaran (5 hari) dalam kalender Jawa. Total terdapat 35 kombinasi unik (7×5=35). Setiap weton memiliki neptu (nilai) dan watak tersendiri.
+                </p>
+            </div>
+            
+            <!-- Pasaran Info -->
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mb-8">
+                <div class="glass rounded-xl p-4 text-center border border-gold-500/30">
+                    <div class="text-2xl font-bold text-gold-400">Legi</div>
+                    <div class="text-sm text-gray-400">Manis • Neptu 5</div>
+                </div>
+                <div class="glass rounded-xl p-4 text-center border border-gold-500/30">
+                    <div class="text-2xl font-bold text-gold-400">Pahing</div>
+                    <div class="text-sm text-gray-400">Pahit • Neptu 9</div>
+                </div>
+                <div class="glass rounded-xl p-4 text-center border border-gold-500/30">
+                    <div class="text-2xl font-bold text-gold-400">Pon</div>
+                    <div class="text-sm text-gray-400">Pon • Neptu 7</div>
+                </div>
+                <div class="glass rounded-xl p-4 text-center border border-gold-500/30">
+                    <div class="text-2xl font-bold text-gold-400">Wage</div>
+                    <div class="text-sm text-gray-400">Asin • Neptu 4</div>
+                </div>
+                <div class="glass rounded-xl p-4 text-center border border-gold-500/30">
+                    <div class="text-2xl font-bold text-gold-400">Kliwon</div>
+                    <div class="text-sm text-gray-400">Bening • Neptu 8</div>
+                </div>
+            </div>
+
+            <!-- Days Info -->
+            <div class="grid grid-cols-7 gap-2 mb-8 text-center">
+                <div class="glass rounded-lg p-2 text-xs md:text-sm border border-white/20">Minggu<br><span class="text-gold-400">Neptu 5</span></div>
+                <div class="glass rounded-lg p-2 text-xs md:text-sm border border-white/20">Senin<br><span class="text-gold-400">Neptu 4</span></div>
+                <div class="glass rounded-lg p-2 text-xs md:text-sm border border-white/20">Selasa<br><span class="text-gold-400">Neptu 3</span></div>
+                <div class="glass rounded-lg p-2 text-xs md:text-sm border border-white/20">Rabu<br><span class="text-gold-400">Neptu 7</span></div>
+                <div class="glass rounded-lg p-2 text-xs md:text-sm border border-white/20">Kamis<br><span class="text-gold-400">Neptu 8</span></div>
+                <div class="glass rounded-lg p-2 text-xs md:text-sm border border-white/20">Jumat<br><span class="text-gold-400">Neptu 6</span></div>
+                <div class="glass rounded-lg p-2 text-xs md:text-sm border border-white/20">Sabtu<br><span class="text-gold-400">Neptu 9</span></div>
+            </div>
+
+            <!-- Weton Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4" id="weton-grid">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal for detail view -->
+    <div id="modal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/80 backdrop-blur-sm" onclick="closeModal(event)">
+        <div class="glass rounded-2xl p-6 md:p-8 max-w-2xl w-full max-h-[80vh] overflow-y-auto border border-gold-500/30 animate-fade-in" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-start mb-4">
+                <h3 id="modal-title" class="text-2xl md:text-3xl font-bold text-gold-400"></h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-white text-2xl cursor-pointer">&times;</button>
+            </div>
+            <div id="modal-body" class="text-gray-300 space-y-3"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center py-12 px-4 text-gray-500 border-t border-white/10 mt-20">
+        <p class="mb-2">Ensiklopedia Kosmik © 2024</p>
+        <p class="text-sm">Data dikompilasi dari berbagai sumber astrologi, astronomi, dan budaya tradisional.</p>
+    </footer>
+
+    <script>
+        // ============ DATA ============
+        
+        const shioData = [
+            {
+                nama: "Tikus (Rat)",
+                emoji: "🐭",
+                tahun: [1924, 1936, 1948, 1960, 1972, 1984, 1996, 2008, 2020, 2032],
+                elemen: "Air",
+                waktu: "23:00 - 01:00",
+                arah: "Utara",
+                sifatPositif: "Cerdas, adaptif, lincah, optimis, sosial, hemat, kreatif",
+                sifatNegatif: "Licik, egois, serakah, tidak sabar, cerewet",
+                keberuntungan: "Angka: 2, 3 | Warna: Biru, Emas | Bunga: Bakung, Violet",
+                cocok: "Naga, Monyet, Babi",
+                tidakCocok: "Kuda, Kambing"
+            },
+            {
+                nama: "Kerbau (Ox)",
+                emoji: "🐂",
+                tahun: [1925, 1937, 1949, 1961, 1973, 1985, 1997, 2009, 2021, 2033],
+                elemen: "Tanah",
+                waktu: "01:00 - 03:00",
+                arah: "Timur Laut",
+                sifatPositif: "Jujur, rajin, tekun, sabar, dapat diandalkan, kuat, determinasi",
+                sifatNegatif: "Keras kepala, materialistis, posesif, tidak komunikatif",
+                keberuntungan: "Angka: 1, 4 | Warna: Putih, Kuning, Hijau | Bunga: Tulip",
+                cocok: "Tikus, Ular, Ayam",
+                tidakCocok: "Macan, Kambing, Kuda"
+            },
+            {
+                nama: "Macan (Tiger)",
+                emoji: "🐯",
+                tahun: [1926, 1938, 1950, 1962, 1974, 1986, 1998, 2010, 2022, 2034],
+                elemen: "Kayu",
+                waktu: "03:00 - 05:00",
+                arah: "Timur",
+                sifatPositif: "Berani, percaya diri, kompetitif, karismatik, pemimpin, murah hati",
+                sifatNegatif: "Agresif, arogan, impulsif, egois, tidak bisa dikendalikan",
+                keberuntungan: "Angka: 1, 3, 4 | Warna: Biru, Abu-abu, Oranye | Bunga: Cinchona",
+                cocok: "Naga, Kuda, Babi",
+                tidakCocok: "Monyet, Ular"
+            },
+            {
+                nama: "Kelinci (Rabbit)",
+                emoji: "🐰",
+                tahun: [1927, 1939, 1951, 1963, 1975, 1987, 1999, 2011, 2023, 2035],
+                elemen: "Kayu",
+                waktu: "05:00 - 07:00",
+                arah: "Timur",
+                sifatPositif: "Lembut, tenang, anggun, waspada, sopan, bertanggung jawab, beruntung",
+                sifatNegatif: "Pemalu, pesimis, terlalu sensitif, ragu-ragu, keras kepala",
+                keberuntungan: "Angka: 3, 4, 6 | Warna: Merah, Pink, Ungu, Biru | Bunga: Melati",
+                cocok: "Kambing, Monyet, Babi, Anjing",
+                tidakCocok: "Ayam, Naga, Tikus"
+            },
+            {
+                nama: "Naga (Dragon)",
+                emoji: "",
+                tahun: [1928, 1940, 1952, 1964, 1976, 1988, 2000, 2012, 2024, 2036],
+                elemen: "Tanah",
+                waktu: "07:00 - 09:00",
+                arah: "Timur",
+                sifatPositif: "Kuasa, ambisius, berani, energik, beruntung, karismatik, percaya diri",
+                sifatNegatif: "Arogan, tidak sabar, tidak taktis, menuntut, keras kepala",
+                keberuntungan: "Angka: 1, 6, 7 | Warna: Emas, Perak, Abu-abu | Bunga: Naga",
+                cocok: "Tikus, Macan, Ular, Kambing, Ayam",
+                tidakCocok: "Kerbau, Kelinci, Anjing"
+            },
+            {
+                nama: "Ular (Snake)",
+                emoji: "",
+                tahun: [1929, 1941, 1953, 1965, 1977, 1989, 2001, 2013, 2025, 2037],
+                elemen: "Api",
+                waktu: "09:00 - 11:00",
+                arah: "Tenggara",
+                sifatPositif: "Bijaksana, misterius, intuitif, elegan, determinasi, tenang",
+                sifatNegatif: "Cemburu, curiga, licik, manipulatif, posesif, materialistis",
+                keberuntungan: "Angka: 2, 8, 9 | Warna: Hitam, Merah, Kuning | Bunga: Anggrek",
+                cocok: "Naga, Ayam",
+                tidakCocok: "Macan, Kelinci, Kuda, Babi"
+            },
+            {
+                nama: "Kuda (Horse)",
+                emoji: "🐴",
+                tahun: [1930, 1942, 1954, 1966, 1978, 1990, 2002, 2014, 2026, 2038],
+                elemen: "Api",
+                waktu: "11:00 - 13:00",
+                arah: "Selatan",
+                sifatPositif: "Aktif, energik, bebas, petualang, ramah, murah hati, lincah",
+                sifatNegatif: "Tidak sabar, impulsif, boros, tidak konsisten, egois",
+                keberuntungan: "Angka: 2, 3, 7 | Warna: Kuning, Hijau, Merah | Bunga: Matahari",
+                cocok: "Macan, Kambing, Kelinci",
+                tidakCocok: "Tikus, Kerbau, Kambing"
+            },
+            {
+                nama: "Kambing (Goat)",
+                emoji: "🐐",
+                tahun: [1931, 1943, 1955, 1967, 1979, 1991, 2003, 2015, 2027, 2039],
+                elemen: "Tanah",
+                waktu: "13:00 - 15:00",
+                arah: "Barat Daya",
+                sifatPositif: "Lembut, kreatif, elegan, tenang, simpatik, artistik, baik hati",
+                sifatNegatif: "Pemalu, pesimis, mudah cemas, bergantung, tidak realistis",
+                keberuntungan: "Angka: 2, 7 | Warna: Hijau, Merah, Ungu | Bunga: Anggrek",
+                cocok: "Kelinci, Kuda, Babi",
+                tidakCocok: "Kerbau, Macan, Anjing"
+            },
+            {
+                nama: "Monyet (Monkey)",
+                emoji: "🐵",
+                tahun: [1932, 1944, 1956, 1968, 1980, 1992, 2004, 2016, 2028, 2040],
+                elemen: "Logam",
+                waktu: "15:00 - 17:00",
+                arah: "Barat Daya",
+                sifatPositif: "Cerdas, lucu, energik, ceria, percaya diri, serbaguna, tajam",
+                sifatNegatif: "Licik, tidak jujur, egois, sombong, manipulatif, curiga",
+                keberuntungan: "Angka: 4, 9 | Warna: Putih, Biru, Emas | Bunga: Krisan",
+                cocok: "Tikus, Naga",
+                tidakCocok: "Macan, Ular, Babi"
+            },
+            {
+                nama: "Ayam (Rooster)",
+                emoji: "🐓",
+                tahun: [1933, 1945, 1957, 1969, 1981, 1993, 2005, 2017, 2029, 2041],
+                elemen: "Logam",
+                waktu: "17:00 - 19:00",
+                arah: "Barat",
+                sifatPositif: "Observatif, rajin, berani, berbakat, percaya diri, setia, jujur",
+                sifatNegatif: "Vain, kritis, praktis, egois, perfeksionis, blak-blakan",
+                keberuntungan: "Angka: 5, 7, 8 | Warna: Emas, Coklat, Kuning | Bunga: Gloria",
+                cocok: "Kerbau, Ular, Naga",
+                tidakCocok: "Kelinci, Anjing, Ayam"
+            },
+            {
+                nama: "Anjing (Dog)",
+                emoji: "🐶",
+                tahun: [1934, 1946, 1958, 1970, 1982, 1994, 2006, 2018, 2030, 2042],
+                elemen: "Tanah",
+                waktu: "19:00 - 21:00",
+                arah: "Barat Laut",
+                sifatPositif: "Setia, jujur, dapat diandalkan, baik hati, berhati-hati, adil",
+                sifatNegatif: "Cemas, dingin, keras kepala, defensif, pesimis, konservatif",
+                keberuntungan: "Angka: 3, 4, 9 | Warna: Merah, Hijau, Ungu | Bunga: Mawar",
+                cocok: "Kelinci, Macan, Kuda",
+                tidakCocok: "Naga, Kambing, Ayam"
+            },
+            {
+                nama: "Babi (Pig)",
+                emoji: "🐷",
+                tahun: [1935, 1947, 1959, 1971, 1983, 1995, 2007, 2019, 2031, 2043],
+                elemen: "Air",
+                waktu: "21:00 - 23:00",
+                arah: "Barat Laut",
+                sifatPositif: "Jujur, murah hati, penyayang, sabar, rajin, optimis, tulus",
+                sifatNegatif: "Naif, materialistis, mudah tertipu, emosional, boros",
+                keberuntungan: "Angka: 2, 5, 8 | Warna: Kuning, Abu-abu, Coklat | Bunga: Anyelir",
+                cocok: "Macan, Kelinci, Kambing",
+                tidakCocok: "Ular, Monyet"
+            }
+        ];
+
+        const zodiakData = [
+            {
+                nama: "Aries",
+                simbol: "♈",
+                tanggal: "21 Maret - 19 April",
+                elemen: "Api",
+                planet: "Mars",
+                sifatPositif: "Berani, energik, antusias, percaya diri, optimis, jujur, gairah",
+                sifatNegatif: "Sabar, Moody, impulsif, agresif, egois, cepat marah",
+                pekerjaan: "Pengusaha, atlet, tentara, dokter bedah, wiraswasta",
+                kompatibilitas: "Leo, Sagitarius, Gemini, Aquarius"
+            },
+            {
+                nama: "Taurus",
+                simbol: "♉",
+                tanggal: "20 April - 20 Mei",
+                elemen: "Tanah",
+                planet: "Venus",
+                sifatPositif: "Dapat diandalkan, sabar, praktis, setia, stabil, tekun, dermawan",
+                sifatNegatif: "Keras kepala, posesif, tidak kompromi, materialistis",
+                pekerjaan: "Akuntan, insinyur, arsitek, musisi, chef, desainer",
+                kompatibilitas: "Virgo, Capricorn, Cancer, Pisces"
+            },
+            {
+                nama: "Gemini",
+                simbol: "♊",
+                tanggal: "21 Mei - 20 Juni",
+                elemen: "Udara",
+                planet: "Merkurius",
+                sifatPositif: "Lembut, penasaran, adaptif, cepat belajar, komunikatif, ramah",
+                sifatNegatif: "Gugup, tidak konsisten, tidak logis, gosip, gelisah",
+                pekerjaan: "Jurnalis, penulis, aktor, guru, sales, pelawak",
+                kompatibilitas: "Libra, Aquarius, Aries, Leo"
+            },
+            {
+                nama: "Cancer",
+                simbol: "♋",
+                tanggal: "21 Juni - 22 Juli",
+                elemen: "Air",
+                planet: "Bulan",
+                sifatPositif: "Tenang, intuitif, sentimental, setia, persuasif, simpatik",
+                sifatNegatif: "Moody, pesimis, curiga, manipulatif, tidak aman",
+                pekerjaan: "Perawat, guru, psikolog, penulis, chef, sejarawan",
+                kompatibilitas: "Scorpio, Pisces, Taurus, Virgo"
+            },
+            {
+                nama: "Leo",
+                simbol: "♌",
+                tanggal: "23 Juli - 22 Agustus",
+                elemen: "Api",
+                planet: "Matahari",
+                sifatPositif: "Kreatif, gairah, murah hati, hangat, ceria, humoris, percaya diri",
+                sifatNegatif: "Arogan, keras kepala, egois, malas, tidak fleksibel",
+                pekerjaan: "Aktor, politikus, manajer, desainer, entertainer",
+                kompatibilitas: "Aries, Sagitarius, Gemini, Libra"
+            },
+            {
+                nama: "Virgo",
+                simbol: "♍",
+                tanggal: "23 Agustus - 22 September",
+                elemen: "Tanah",
+                planet: "Merkurius",
+                sifatPositif: "Loyal, analitis, baik hati, pekerja keras, praktis, teliti",
+                sifatNegatif: "Pemalu, khawatir, terlalu kritis, perfeksionis, semua kerja tidak bermain",
+                pekerjaan: "Dokter, akuntan, ilmuwan, editor, analis, pustakawan",
+                kompatibilitas: "Taurus, Capricorn, Cancer, Scorpio"
+            },
+            {
+                nama: "Libra",
+                simbol: "♎",
+                tanggal: "23 September - 22 Oktober",
+                elemen: "Udara",
+                planet: "Venus",
+                sifatPositif: "Kooperatif, diplomatik, anggun, adil, sosial, idealis",
+                sifatNegatif: "Tidak harmonis, menghindari konflik, membenci sendiri, pendendam",
+                pekerjaan: "Pengacara, diplomat, desainer, konselor, seniman, HR",
+                kompatibilitas: "Gemini, Aquarius, Leo, Sagitarius"
+            },
+            {
+                nama: "Scorpio",
+                simbol: "♏",
+                tanggal: "23 Oktober - 21 November",
+                elemen: "Air",
+                planet: "Pluto/Mars",
+                sifatPositif: "Resourceful, berani, gairah, tekun, setia, intuitif, misterius",
+                sifatNegatif: "Dramatis, posesif, cemburu, manipulatif, pendendam",
+                pekerjaan: "Detektif, ilmuwan, psikolog, peneliti, ahli bedah",
+                kompatibilitas: "Cancer, Pisces, Virgo, Capricorn"
+            },
+            {
+                nama: "Sagitarius",
+                simbol: "♐",
+                tanggal: "22 November - 21 Desember",
+                elemen: "Api",
+                planet: "Jupiter",
+                sifatPositif: "Murah hati, idealis, lucu, optimis, petualang, filosofis",
+                sifatNegatif: "Janji lebih dari bisa, tidak sabar, akan mengatakan apa pun, ceroboh",
+                pekerjaan: "Pengajar, penulis, traveler, filsuf, pemandu wisata",
+                kompatibilitas: "Aries, Leo, Libra, Aquarius"
+            },
+            {
+                nama: "Capricorn",
+                simbol: "♑",
+                tanggal: "22 Desember - 19 Januari",
+                elemen: "Tanah",
+                planet: "Saturnus",
+                sifatPositif: "Bertanggung jawab, disiplin, mengendalikan diri, manajer baik",
+                sifatNegatif: "Mengetahui segalanya, egois, pesimis, tidak memaafkan, konformis",
+                pekerjaan: "Manajer, eksekutif, akuntan, insinyur, politikus",
+                kompatibilitas: "Taurus, Virgo, Scorpio, Pisces"
+            },
+            {
+                nama: "Aquarius",
+                simbol: "♒",
+                tanggal: "20 Januari - 18 Februari",
+                elemen: "Udara",
+                planet: "Uranus",
+                sifatPositif: "Progresif, orisinal, independen, humanistik, intelektual",
+                sifatNegatif: "Menyebar, tidak emosional, temperamen, tidak kompromi, eksentrik",
+                pekerjaan: "Ilmuwan, astronom, aktivis, inventor, programmer",
+                kompatibilitas: "Gemini, Libra, Aries, Sagitarius"
+            },
+            {
+                nama: "Pisces",
+                simbol: "♓",
+                tanggal: "19 Februari - 20 Maret",
+                elemen: "Air",
+                planet: "Neptunus",
+                sifatPositif: "Welas asih, intuitif, artistik, lembut, bijaksana, musikal",
+                sifatNegatif: "Takut, terlalu trusting, sedih, keinginan melarikan diri, korban",
+                pekerjaan: "Seniman, musisi, perawat, psikolog, pendeta, fotografer",
+                kompatibilitas: "Cancer, Scorpio, Taurus, Capricorn"
+            }
+        ];
+
+        const planetData = [
+            {
+                nama: "Merkurius",
+                emoji: "☿",
+                tipe: "Planet Dalam (Terestrial)",
+                jarakMatahari: "57,9 juta km",
+                diameter: "4.879 km",
+                massa: "3,30 × 10²³ kg",
+                orbit: "88 hari",
+                rotasi: "58,6 hari",
+                suhu: "-173°C hingga 427°C",
+                satelit: "0",
+                atmosfer: "Sangat tipis (Oksigen, Natrium, Hidrogen)",
+                fakta: "Planet terkecil dan terdekat dengan Matahari. Permukaannya penuh kawah mirip Bulan. Memiliki variasi suhu paling ekstrem di tata surya."
+            },
+            {
+                nama: "Venus",
+                emoji: "♀",
+                tipe: "Planet Dalam (Terestrial)",
+                jarakMatahari: "108,2 juta km",
+                diameter: "12.104 km",
+                massa: "4,87 × 10²⁴ kg",
+                orbit: "225 hari",
+                rotasi: "243 hari (berlawanan arah)",
+                suhu: "462°C (permukaan)",
+                satelit: "0",
+                atmosfer: "Sangat tebal (96% CO₂, 3% Nitrogen)",
+                fakta: "Planet terpanas di tata surya karena efek rumah kaca ekstrem. Berotasi berlawanan arah (retrograde). Sering disebut 'bintang kejora'."
+            },
+            {
+                nama: "Bumi",
+                emoji: "",
+                tipe: "Planet Dalam (Terestrial)",
+                jarakMatahari: "149,6 juta km (1 AU)",
+                diameter: "12.742 km",
+                massa: "5,97 × 10²⁴ kg",
+                orbit: "365,25 hari",
+                rotasi: "23 jam 56 menit",
+                suhu: "-89°C hingga 57°C (rata-rata 15°C)",
+                satelit: "1 (Bulan)",
+                atmosfer: "78% Nitrogen, 21% Oksigen, 1% lainnya",
+                fakta: "Satu-satunya planet yang diketahui memiliki kehidupan. 71% permukaan tertutup air. Memiliki medan magnet yang melindungi dari radiasi matahari."
+            },
+            {
+                nama: "Mars",
+                emoji: "",
+                tipe: "Planet Dalam (Terestrial)",
+                jarakMatahari: "227,9 juta km",
+                diameter: "6.779 km",
+                massa: "6,42 × 10²³ kg",
+                orbit: "687 hari",
+                rotasi: "24 jam 37 menit",
+                suhu: "-153°C hingga 20°C",
+                satelit: "2 (Phobos, Deimos)",
+                atmosfer: "95% CO₂, 2,7% Nitrogen, 1,6% Argon",
+                fakta: "Dikenal sebagai 'Planet Merah' karena oksida besi. Memiliki gunung tertinggi di tata surya (Olympus Mons, 21,9 km) dan lembah terdalam (Valles Marineris)."
+            },
+            {
+                nama: "Jupiter",
+                emoji: "♃",
+                tipe: "Planet Luar (Gas Raksasa)",
+                jarakMatahari: "778,5 juta km",
+                diameter: "139.820 km",
+                massa: "1,90 × 10²⁷ kg",
+                orbit: "11,86 tahun",
+                rotasi: "9 jam 56 menit",
+                suhu: "-145°C (puncak awan)",
+                satelit: "95 (termasuk Ganymede, Callisto, Io, Europa)",
+                atmosfer: "89% Hidrogen, 10% Helium",
+                fakta: "Planet terbesar di tata surya (1.300x volume Bumi). Memiliki Bintik Merah Raksasa (badai raksasa berusia 350+ tahun). Memiliki sistem cincin tipis."
+            },
+            {
+                nama: "Saturnus",
+                emoji: "♄",
+                tipe: "Planet Luar (Gas Raksasa)",
+                jarakMatahari: "1,43 miliar km",
+                diameter: "116.460 km",
+                massa: "5,68 × 10²⁶ kg",
+                orbit: "29,46 tahun",
+                rotasi: "10 jam 34 menit",
+                suhu: "-178°C (puncak awan)",
+                satelit: "146 (termasuk Titan, Enceladus)",
+                atmosfer: "96% Hidrogen, 3% Helium",
+                fakta: "Terkenal dengan sistem cincinnya yang spektakuler (es dan batuan). Kepadatannya lebih rendah dari air. Anginnya mencapai 1.800 km/jam."
+            },
+            {
+                nama: "Uranus",
+                emoji: "⛢",
+                tipe: "Planet Luar (Es Raksasa)",
+                jarakMatahari: "2,87 miliar km",
+                diameter: "50.724 km",
+                massa: "8,68 × 10²⁵ kg",
+                orbit: "84 tahun",
+                rotasi: "17 jam 14 menit (retrograde)",
+                suhu: "-224°C",
+                satelit: "27 (Termasuk Titania, Oberon)",
+                atmosfer: "83% Hidrogen, 15% Helium, 2% Metana",
+                fakta: "Berotasi miring 98° (hampir menggelinding). Dijuluki 'planet es' karena atmosfer mengandung metana yang memberi warna biru kehijauan. Planet terdingin (-224°C)."
+            },
+            {
+                nama: "Neptunus",
+                emoji: "♆",
+                tipe: "Planet Luar (Es Raksasa)",
+                jarakMatahari: "4,50 miliar km",
+                diameter: "49.244 km",
+                massa: "1,02 × 10²⁶ kg",
+                orbit: "164,8 tahun",
+                rotasi: "16 jam 6 menit",
+                suhu: "-218°C",
+                satelit: "14 (Termasuk Triton)",
+                atmosfer: "80% Hidrogen, 19% Helium, 1% Metana",
+                fakta: "Planet terjauh dari Matahari. Memiliki angin tercepat di tata surya (2.100 km/jam). Warna biru tua karena metana. Ditemukan melalui prediksi matematis (1846)."
+            }
+        ];
+
+        const elemenData = [
+            {
+                nama: "Kayu (Mu / 木)",
+                emoji: "",
+                warna: "Hijau",
+                musim: "Musim Semi",
+                arah: "Timur",
+                waktu: "Pagi hari",
+                organ: "Hati (Liver) & Kandung Empedu",
+                emosi: "Kemarahan / Kebajikan",
+                rasa: "Asam",
+                bilangan: "3 dan 8",
+                planet: "Jupiter",
+                sifat: "Pertumbuhan, ekspansi, kreativitas, fleksibilitas, vitalitas, kebaikan hati",
+                karakterOrang: "Kreatif, idealis, visioner, dermawan, ekspansif, suka berkolaborasi, tapi bisa keras kepala dan tidak sabar",
+                siklusGeneratif: "Kayu menghasilkan Api (kayu adalah bahan bakar api)",
+                siklusDestruktif: "Kayu mengalahkan Tanah (akar menembus tanah)"
+            },
+            {
+                nama: "Api (Huo / 火)",
+                emoji: "🔥",
+                warna: "Merah",
+                musim: "Musim Panas",
+                arah: "Selatan",
+                waktu: "Siang hari",
+                organ: "Jantung (Heart) & Usus Halus",
+                emosi: "Kegembiraan / Kebencian",
+                rasa: "Pahit",
+                bilangan: "2 dan 7",
+                planet: "Mars",
+                sifat: "Panas, cahaya, transformasi, gairah, energi, antusiasme, ekspresi",
+                karakterOrang: "Bersemangat, dinamis, karismatik, optimis, ekspresif, pemimpin, tapi bisa impulsif, agresif, dan tidak sabar",
+                siklusGeneratif: "Api menghasilkan Tanah (abu dari pembakaran menjadi tanah)",
+                siklusDestruktif: "Api mengalahkan Logam (api melelehkan logam)"
+            },
+            {
+                nama: "Tanah (Tu / 土)",
+                emoji: "🏔️",
+                warna: "Kuning / Coklat",
+                musim: "Akhir Musim Panas / Peralihan",
+                arah: "Pusat",
+                waktu: "Sore hari",
+                organ: "Lambung (Spleen) & Perut",
+                emosi: "Keprihatinan / Empati",
+                rasa: "Manis",
+                bilangan: "5 dan 10",
+                planet: "Saturnus",
+                sifat: "Stabilitas, keseimbangan, nutrisi, pemusatan, kepercayaan, keibuan",
+                karakterOrang: "Stabil, dapat diandalkan, sabar, praktis, peduli, suka merawat, tapi bisa khawatir berlebihan dan keras kepala",
+                siklusGeneratif: "Tanah menghasilkan Logam (mineral terbentuk di dalam tanah)",
+                siklusDestruktif: "Tanah mengalahkan Air (tanah menyerap/menahan air)"
+            },
+            {
+                nama: "Logam (Jin / 金)",
+                emoji: "️",
+                warna: "Putih / Perak / Emas",
+                musim: "Musim Gugur",
+                arah: "Barat",
+                waktu: "Senja",
+                organ: "Paru-paru (Lungs) & Usus Besar",
+                emosi: "Kesedihan / Keberanian",
+                rasa: "Pedas / Tajam",
+                bilangan: "4 dan 9",
+                planet: "Venus",
+                sifat: "Kekuatan, ketajaman, ketegasan, keadilan, kemurnian, nilai, struktur",
+                karakterOrang: "Tegas, berani, berprinsip, terorganisir, adil, mandiri, tapi bisa keras, kaku, dan tidak fleksibel",
+                siklusGeneratif: "Logam menghasilkan Air (logam mengumpulkan air/kondensasi)",
+                siklusDestruktif: "Logam mengalahkan Kayu (kapak logam menebang kayu)"
+            },
+            {
+                nama: "Air (Shui / 水)",
+                emoji: "💧",
+                warna: "Hitam / Biru Tua",
+                musim: "Musim Dingin",
+                arah: "Utara",
+                waktu: "Malam hari",
+                organ: "Ginjal (Kidneys) & Kandung Kemih",
+                emosi: "Ketakutan / Ketenangan",
+                rasa: "Asin",
+                bilangan: "1 dan 6",
+                planet: "Merkurius",
+                sifat: "Mengalir, adaptif, bijaksana, misterius, reflektif, intuitif, kedalaman",
+                karakterOrang: "Bijaksana, intuitif, reflektif, adaptif, misterius, diplomatis, tapi bisa manipulatif, tidak stabil, dan mudah takut",
+                siklusGeneratif: "Air menghasilkan Kayu (air menyuburkan tanaman/kayu)",
+                siklusDestruktif: "Air mengalahkan Api (air memadamkan api)"
+            }
+        ];
+
+        const days = ["Minggu", "Senin", "Selasa", "Rabu", "Kamis", "Jumat", "Sabtu"];
+        const pasaran = ["Legi", "Pahing", "Pon", "Wage", "Kliwon"];
+        const dayNeptu = { "Minggu": 5, "Senin": 4, "Selasa": 3, "Rabu": 7, "Kamis": 8, "Jumat": 6, "Sabtu": 9 };
+        const pasaranNeptu = { "Legi": 5, "Pahing": 9, "Pon": 7, "Wage": 4, "Kliwon": 8 };
+        
+        const wetonWatak = {
+            "Minggu Legi": "Cerdas, rajin, suka membantu, bijaksana, dan disukai banyak orang. Cocok jadi pemimpin.",
+            "Minggu Pahing": "Tekun, pekerja keras, memiliki daya tahan kuat, dan pandai mengatur keuangan.",
+            "Minggu Pon": "Sabar, teliti, cermat, suka menolong, dan memiliki bakat seni yang tinggi.",
+            "Minggu Wage": "Ulet, tangguh, hemat, pandai berbicara, dan memiliki naluri bisnis yang tajam.",
+            "Minggu Kliwon": "Karismatik, berwibawa, dihormati, memiliki aura kepemimpinan, dan spiritual.",
+            "Senin Legi": "Lembut, penyayang, romantis, setia, dan memiliki jiwa seni yang tinggi.",
+            "Senin Pahing": "Tekad kuat, pantang menyerah, mandiri, dan memiliki keberanian tinggi.",
+            "Senin Pon": "Tenang, bijaksana, pendengar yang baik, dan pandai menyelesaikan masalah.",
+            "Senin Wage": "Ceria, mudah bergaul, optimis, dan memiliki bakat komunikasi yang baik.",
+            "Senin Kliwon": "Misterius, intuitif kuat, spiritual, dan memiliki daya tarik yang magnetis.",
+            "Selasa Legi": "Berani, tegas, bersemangat, dan memiliki jiwa petualang yang kuat.",
+            "Selasa Pahing": "Ambisius, pekerja keras, visioner, dan memiliki daya juang tinggi.",
+            "Selasa Pon": "Sabar, realistis, praktis, dan pandai merencanakan masa depan.",
+            "Selasa Wage": "Cerdik, pandai berdiplomasi, humoris, dan mudah beradaptasi.",
+            "Selasa Kliwon": "Berwibawa, tegas namun adil, memiliki karisma, dan dihormati lingkungan.",
+            "Rabu Legi": "Cerdas, komunikatif, pandai bergaul, dan memiliki bakat menulis/berbicara.",
+            "Rabu Pahing": "Tekun, teliti, analitis, dan memiliki ketekunan luar biasa dalam bekerja.",
+            "Rabu Pon": "Sabar, bijaksana, suka belajar, dan memiliki wawasan yang luas.",
+            "Rabu Wage": "Lincah, ceria, kreatif, dan memiliki ide-ide yang inovatif.",
+            "Rabu Kliwon": "Intuitif, bijaksana, memiliki firasat kuat, dan cenderung spiritual.",
+            "Kamis Legi": "Bijaksana, murah hati, dihormati, dan memiliki aura kepemimpinan alami.",
+            "Kamis Pahing": "Ambisius, determinasi tinggi, visioner, dan pandai mengelola sumber daya.",
+            "Kamis Pon": "Tenang, stabil, dapat diandalkan, dan memiliki jiwa penasehat yang baik.",
+            "Kamis Wage": "Komunikatif, ramah, mudah bergaul, dan pandai memotivasi orang lain.",
+            "Kamis Kliwon": "Berkarisma tinggi, dihormati, bijaksana, dan memiliki aura kewibawaan.",
+            "Jumat Legi": "Lembut, penyayang, setia, dan memiliki jiwa keibuan/kebapakan yang kuat.",
+            "Jumat Pahing": "Tekun, realistis, pekerja keras, dan memiliki ketahanan fisik yang baik.",
+            "Jumat Pon": "Sabar, bijaksana, suka menolong, dan memiliki empati yang tinggi.",
+            "Jumat Wage": "Ceria, optimis, mudah bergaul, dan memiliki bakat menghibur orang lain.",
+            "Jumat Kliwon": "Karismatik, misterius, spiritual, dan memiliki daya tarik yang kuat.",
+            "Sabtu Legi": "Cerdas, mandiri, tekun, dan memiliki daya analisis yang tajam.",
+            "Sabtu Pahing": "Ambisius, kuat, determinasi tinggi, dan tidak mudah menyerah.",
+            "Sabtu Pon": "Sabar, praktis, teliti, dan memiliki kemampuan manajerial yang baik.",
+            "Sabtu Wage": "Kreatif, inovatif, humoris, dan pandai menyelesaikan masalah.",
+            "Sabtu Kliwon": "Berwibawa, bijaksana, dihormati, dan memiliki kekuatan spiritual yang besar."
+        };
+
+        // ============ RENDERING ============
+
+        function renderShio() {
+            const grid = document.getElementById('shio-grid');
+            grid.innerHTML = shioData.map((s, i) => `
+                <div class="detail-card card-gradient-shio glass rounded-2xl p-6 border cursor-pointer hover:shadow-xl hover:shadow-red-500/20" onclick="showShioDetail(${i})">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="text-5xl animate-float">${s.emoji}</div>
+                        <div class="text-xs text-red-300 font-mono">SHIO #${i + 1}</div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2">${s.nama}</h3>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="px-3 py-1 bg-red-500/20 rounded-full text-xs text-red-300">Elemen: ${s.elemen}</span>
+                        <span class="px-3 py-1 bg-orange-500/20 rounded-full text-xs text-orange-300">${s.waktu}</span>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-3"><strong class="text-red-400">Sifat Positif:</strong> ${s.sifatPositif}</p>
+                    <div class="flex gap-2 text-xs">
+                        <span class="text-green-400">✓ ${s.cocok}</span>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-white/10 text-xs text-gray-500">
+                        <strong>Tahun:</strong> ${s.tahun.slice(0, 5).join(', ')}...
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderZodiak() {
+            const grid = document.getElementById('zodiak-grid');
+            grid.innerHTML = zodiakData.map((z, i) => `
+                <div class="detail-card card-gradient-zodiak glass rounded-2xl p-6 border cursor-pointer hover:shadow-xl hover:shadow-purple-500/20" onclick="showZodiakDetail(${i})">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="text-6xl text-purple-300">${z.simbol}</div>
+                        <div class="text-xs text-purple-300 font-mono">ZODIAK #${i + 1}</div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2">${z.nama}</h3>
+                    <p class="text-sm text-purple-300 mb-2">${z.tanggal}</p>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="px-3 py-1 bg-purple-500/20 rounded-full text-xs text-purple-300">Elemen: ${z.elemen}</span>
+                        <span class="px-3 py-1 bg-indigo-500/20 rounded-full text-xs text-indigo-300">Planet: ${z.planet}</span>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-3"><strong class="text-purple-400">Sifat:</strong> ${z.sifatPositif}</p>
+                    <div class="mt-4 pt-4 border-t border-white/10 text-xs text-gray-500">
+                        <strong>Cocok:</strong> ${z.kompatibilitas}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderPlanet() {
+            const grid = document.getElementById('planet-grid');
+            grid.innerHTML = planetData.map((p, i) => `
+                <div class="detail-card card-gradient-planet glass rounded-2xl p-6 border cursor-pointer hover:shadow-xl hover:shadow-blue-500/20" onclick="showPlanetDetail(${i})">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="text-6xl">${p.emoji}</div>
+                        <div class="text-xs text-blue-300 font-mono">PLANET #${i + 1}</div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2">${p.nama}</h3>
+                    <p class="text-sm text-blue-300 mb-3">${p.tipe}</p>
+                    <div class="space-y-2 text-sm mb-4">
+                        <div class="flex justify-between"><span class="text-gray-400">Jarak dari Matahari:</span><span class="text-blue-200">${p.jarakMatahari}</span></div>
+                        <div class="flex justify-between"><span class="text-gray-400">Diameter:</span><span class="text-blue-200">${p.diameter}</span></div>
+                        <div class="flex justify-between"><span class="text-gray-400">Periode Orbit:</span><span class="text-blue-200">${p.orbit}</span></div>
+                        <div class="flex justify-between"><span class="text-gray-400">Rotasi:</span><span class="text-blue-200">${p.rotasi}</span></div>
+                        <div class="flex justify-between"><span class="text-gray-400">Suhu:</span><span class="text-blue-200">${p.suhu}</span></div>
+                        <div class="flex justify-between"><span class="text-gray-400">Satelit:</span><span class="text-blue-200">${p.satelit}</span></div>
+                    </div>
+                    <p class="text-xs text-gray-400 italic border-t border-white/10 pt-3">💡 ${p.fakta}</p>
+                </div>
+            `).join('');
+        }
+
+        function renderElemen() {
+            const grid = document.getElementById('elemen-grid');
+            grid.innerHTML = elemenData.map((e, i) => `
+                <div class="detail-card card-gradient-elemen glass rounded-2xl p-6 border cursor-pointer hover:shadow-xl hover:shadow-green-500/20" onclick="showElemenDetail(${i})">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="text-6xl animate-pulse-slow">${e.emoji}</div>
+                        <div class="text-xs text-green-300 font-mono">ELEMEN #${i + 1}</div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2">${e.nama}</h3>
+                    <div class="grid grid-cols-2 gap-2 mb-3 text-sm">
+                        <div><span class="text-gray-400">Warna:</span> <span class="text-green-200">${e.warna}</span></div>
+                        <div><span class="text-gray-400">Musim:</span> <span class="text-green-200">${e.musim}</span></div>
+                        <div><span class="text-gray-400">Arah:</span> <span class="text-green-200">${e.arah}</span></div>
+                        <div><span class="text-gray-400">Planet:</span> <span class="text-green-200">${e.planet}</span></div>
+                        <div><span class="text-gray-400">Organ:</span> <span class="text-green-200">${e.organ}</span></div>
+                        <div><span class="text-gray-400">Emosi:</span> <span class="text-green-200">${e.emosi}</span></div>
+                    </div>
+                    <p class="text-sm text-gray-400 mb-3"><strong class="text-green-400">Sifat:</strong> ${e.sifat}</p>
+                    <div class="text-xs text-gray-500 space-y-1 border-t border-white/10 pt-3">
+                        <div> <strong class="text-green-300">Melahirkan:</strong> ${e.siklusGeneratif}</div>
+                        <div>️ <strong class="text-red-300">Mengalahkan:</strong> ${e.siklusDestruktif}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        let wetonList = [];
+        function renderWeton() {
+            const grid = document.getElementById('weton-grid');
+            let html = '';
+            wetonList = [];
+            days.forEach(day => {
+                pasaran.forEach(pasar => {
+                    const key = `${day} ${pasar}`;
+                    const totalNeptu = dayNeptu[day] + pasaranNeptu[pasar];
+                    const watak = wetonWatak[key] || "Watak yang baik dan berkah.";
+                    wetonList.push({ key, pasar, totalNeptu, watak });
+                    const idx = wetonList.length - 1;
+                    html += `
+                        <div class="detail-card card-gradient-weton glass rounded-xl p-4 border cursor-pointer hover:shadow-lg hover:shadow-gold-500/20" onclick="showWetonDetail(${idx})">
+                            <div class="text-center mb-2">
+                                <div class="text-lg font-bold text-gold-400">${key}</div>
+                                <div class="text-xs text-gray-400">${day} + ${pasar}</div>
+                            </div>
+                            <div class="flex justify-between items-center text-xs mb-2">
+                                <span class="text-gray-400">Neptu Hari: <span class="text-gold-300">${dayNeptu[day]}</span></span>
+                                <span class="text-gray-400">Neptu Pasaran: <span class="text-gold-300">${pasaranNeptu[pasar]}</span></span>
+                            </div>
+                            <div class="text-center py-2 bg-gold-500/10 rounded-lg border border-gold-500/30">
+                                <div class="text-xs text-gray-400">Total Neptu</div>
+                                <div class="text-2xl font-black text-gold-400">${totalNeptu}</div>
+                            </div>
+                            <p class="text-xs text-gray-400 mt-2 line-clamp-3">${watak}</p>
+                        </div>
+                    `;
+                });
+            });
+            grid.innerHTML = html;
+        }
+
+        // ============ MODAL FUNCTIONS ============
+
+        function showShioDetail(idx) {
+            const s = shioData[idx];
+            const modal = document.getElementById('modal');
+            document.getElementById('modal-title').innerHTML = `<span class="text-4xl mr-2">${s.emoji}</span> ${s.nama}`;
+            document.getElementById('modal-body').innerHTML = `
+                <div class="grid grid-cols-2 gap-3 mb-4 text-sm">
+                    <div class="glass p-3 rounded-lg"><strong class="text-red-400">Elemen:</strong><br>${s.elemen}</div>
+                    <div class="glass p-3 rounded-lg"><strong class="text-red-400">Waktu Shio:</strong><br>${s.waktu}</div>
+                    <div class="glass p-3 rounded-lg"><strong class="text-red-400">Arah:</strong><br>${s.arah}</div>
+                    <div class="glass p-3 rounded-lg"><strong class="text-red-400">Cocok:</strong><br>${s.cocok}</div>
+                </div>
+                <div class="mb-3"><strong class="text-red-400">Tahun:</strong><br><span class="text-sm text-gray-300">${s.tahun.join(', ')}</span></div>
+                <div class="mb-3"><strong class="text-red-400">Sifat Positif:</strong><br><span class="text-sm text-gray-300">${s.sifatPositif}</span></div>
+                <div class="mb-3"><strong class="text-red-400">Sifat Negatif:</strong><br><span class="text-sm text-gray-300">${s.sifatNegatif}</span></div>
+                <div class="mb-3"><strong class="text-red-400">Keberuntungan:</strong><br><span class="text-sm text-gray-300">${s.keberuntungan}</span></div>
+                <div><strong class="text-red-400">Tidak Cocok Dengan:</strong><br><span class="text-sm text-gray-300">${s.tidakCocok}</span></div>
+            `;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function showZodiakDetail(idx) {
+            const z = zodiakData[idx];
+            const modal = document.getElementById('modal');
+            document.getElementById('modal-title').innerHTML = `<span class="text-4xl mr-2 text-purple-400">${z.simbol}</span> ${z.nama}`;
+            document.getElementById('modal-body').innerHTML = `
+                <div class="grid grid-cols-2 gap-3 mb-4 text-sm">
+                    <div class="glass p-3 rounded-lg"><strong class="text-purple-400">Tanggal:</strong><br>${z.tanggal}</div>
+                    <div class="glass p-3 rounded-lg"><strong class="text-purple-400">Elemen:</strong><br>${z.elemen}</div>
+                    <div class="glass p-3 rounded-lg"><strong class="text-purple-400">Planet Penguasa:</strong><br>${z.planet}</div>
+                    <div class="glass p-3 rounded-lg"><strong class="text-purple-400">Kompatibilitas:</strong><br>${z.kompatibilitas}</div>
+                </div>
+                <div class="mb-3"><strong class="text-purple-400">Sifat Positif:</strong><br><span class="text-sm text-gray-300">${z.sifatPositif}</span></div>
+                <div class="mb-3"><strong class="text-purple-400">Sifat Negatif:</strong><br><span class="text-sm text-gray-300">${z.sifatNegatif}</span></div>
+                <div><strong class="text-purple-400">Pekerjaan Cocok:</strong><br><span class="text-sm text-gray-300">${z.pekerjaan}</span></div>
+            `;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function showPlanetDetail(idx) {
+            const p = planetData[idx];
+            const modal = document.getElementById('modal');
+            document.getElementById('modal-title').innerHTML = `<span class="text-4xl mr-2">${p.emoji}</span> ${p.nama}`;
+            document.getElementById('modal-body').innerHTML = `
+                <div class="glass p-3 rounded-lg mb-4 text-sm"><strong class="text-blue-400">Tipe:</strong> ${p.tipe}</div>
+                <div class="space-y-2 text-sm mb-4">
+                    <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-gray-400">Jarak dari Matahari:</span><span class="text-blue-200">${p.jarakMatahari}</span></div>
+                    <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-gray-400">Diameter:</span><span class="text-blue-200">${p.diameter}</span></div>
+                    <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-gray-400">Massa:</span><span class="text-blue-200">${p.massa}</span></div>
+                    <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-gray-400">Periode Orbit:</span><span class="text-blue-200">${p.orbit}</span></div>
+                    <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-gray-400">Periode Rotasi:</span><span class="text-blue-200">${p.rotasi}</span></div>
+                    <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-gray-400">Suhu:</span><span class="text-blue-200">${p.suhu}</span></div>
+                    <div class="flex justify-between border-b border-white/10 pb-2"><span class="text-gray-400">Jumlah Satelit:</span><span class="text-blue-200">${p.satelit}</span></div>
+                    <div class="flex justify-between"><span class="text-gray-400">Atmosfer:</span><span class="text-blue-200">${p.atmosfer}</span></div>
+                </div>
+                <div class="glass p-4 rounded-lg bg-blue-500/10 border border-blue-500/30">
+                    <strong class="text-blue-400">💡 Fakta Menarik:</strong><br>
+                    <span class="text-sm text-gray-300">${p.fakta}</span>
+                </div>
+            `;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function showElemenDetail(idx) {
+            const e = elemenData[idx];
+            const modal = document.getElementById('modal');
+            document.getElementById('modal-title').innerHTML = `<span class="text-4xl mr-2">${e.emoji}</span> ${e.nama}`;
+            document.getElementById('modal-body').innerHTML = `
+                <div class="grid grid-cols-2 gap-3 mb-4 text-sm">
+                    <div class="glass p-3 rounded-lg"><strong class="text-green-400">Warna:</strong><br>${e.warna}</div>
+                    <div class="glass p-3 rounded-lg"><strong class="text-green-400">Musim:</strong><br>${e.musim}</div>
+                    <div class="glass p-3 rounded-lg"><strong class="text-green-400">Arah:</strong><br>${e.arah}</div>
+                    <div class="glass p-3 rounded-lg"><strong class="text-green-400">Waktu:</strong><br>${e.waktu}</div>
+                    <div class="glass p-3 rounded-lg"><strong class="text-green-400">Organ:</strong><br>${e.organ}</div>
+                    <div class="glass p-3 rounded-lg"><strong class="text-green-400">Emosi:</strong><br>${e.emosi}</div>
+                    <div class="glass p-3 rounded-lg"><strong class="text-green-400">Rasa:</strong><br>${e.rasa}</div>
+                    <div class="glass p-3 rounded-lg"><strong class="text-green-400">Bilangan:</strong><br>${e.bilangan}</div>
+                    <div class="glass p-3 rounded-lg col-span-2"><strong class="text-green-400">Planet:</strong><br>${e.planet}</div>
+                </div>
+                <div class="mb-3"><strong class="text-green-400">Sifat & Karakteristik:</strong><br><span class="text-sm text-gray-300">${e.sifat}</span></div>
+                <div class="mb-3"><strong class="text-green-400">Karakter Orang Elemen Ini:</strong><br><span class="text-sm text-gray-300">${e.karakterOrang}</span></div>
+                <div class="grid grid-cols-1 gap-2 mt-4">
+                    <div class="glass p-3 rounded-lg bg-green-500/10 border border-green-500/30 text-sm">
+                        <strong class="text-green-300">🔄 Siklus Generatif:</strong><br>${e.siklusGeneratif}
+                    </div>
+                    <div class="glass p-3 rounded-lg bg-red-500/10 border border-red-500/30 text-sm">
+                        <strong class="text-red-300">⚔️ Siklus Destruktif:</strong><br>${e.siklusDestruktif}
+                    </div>
+                </div>
+            `;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function showWetonDetail(idx) {
+            const w = wetonList[idx];
+            const modal = document.getElementById('modal');
+            document.getElementById('modal-title').innerHTML = `📅 Weton ${w.key}`;
+            const dayName = w.key.split(' ')[0];
+            document.getElementById('modal-body').innerHTML = `
+                <div class="grid grid-cols-2 gap-3 mb-4 text-sm">
+                    <div class="glass p-3 rounded-lg"><strong class="text-gold-400">Hari:</strong><br>${dayName}</div>
+                    <div class="glass p-3 rounded-lg"><strong class="text-gold-400">Pasaran:</strong><br>${w.pasar}</div>
+                </div>
+                <div class="glass p-6 rounded-xl bg-gold-500/10 border border-gold-500/30 text-center mb-4">
+                    <div class="text-sm text-gray-400 mb-1">Total Nilai Neptu</div>
+                    <div class="text-5xl font-black text-gold-400 mb-2">${w.totalNeptu}</div>
+                    <div class="text-xs text-gray-400">
+                        Neptu Hari (${dayNeptu[dayName]}) + Neptu Pasaran (${pasaranNeptu[w.pasar]}) = ${w.totalNeptu}
+                    </div>
+                </div>
+                <div class="glass p-4 rounded-lg mb-3">
+                    <strong class="text-gold-400">🎭 Watak & Karakter:</strong><br>
+                    <span class="text-sm text-gray-300">${w.watak}</span>
+                </div>
+                <div class="text-xs text-gray-400 bg-black/30 p-3 rounded-lg">
+                    <strong>️ Tentang Neptu:</strong> Neptu adalah nilai angka dalam kalender Jawa yang digunakan untuk menghitung weton, menentukan hari baik, ramalan jodoh, dan upacara tradisional.
+                </div>
+            `;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeModal(e) {
+            if (!e || e.target === document.getElementById('modal')) {
+                document.getElementById('modal').classList.add('hidden');
+                document.getElementById('modal').classList.remove('flex');
+            }
+        }
+
+        // ============ TAB SWITCHING ============
+
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(el => {
+                el.classList.add('hidden');
+                el.classList.remove('animate-fade-in');
+            });
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('tab-active');
+            });
+            
+            const contentEl = document.getElementById('content-' + tabName);
+            const tabEl = document.getElementById('tab-' + tabName);
+            
+            if (contentEl) {
+                contentEl.classList.remove('hidden');
+                setTimeout(() => {
+                    contentEl.classList.add('animate-fade-in');
+                }, 10);
+            }
+            if (tabEl) {
+                tabEl.classList.add('tab-active');
+            }
+            
+            const mainContent = document.getElementById('main-content');
+            if (mainContent) {
+                window.scrollTo({ top: mainContent.offsetTop - 80, behavior: 'smooth' });
+            }
+        }
+
+        // ============ INIT ============
+        renderShio();
+        renderZodiak();
+        renderPlanet();
+        renderElemen();
+        renderWeton();
+    </script>
+</body>
+</html>
+
