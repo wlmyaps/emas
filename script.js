@@ -347,3 +347,30 @@ function displayDirectionalVolatility(data) {
     `;
     document.getElementById('direction-volatility').innerHTML = html;
 }
+
+function analyzeData() {
+    let startDate = document.getElementById('startDate').value;
+    let endDate = document.getElementById('endDate').value;
+    
+    if (new Date(startDate) > new Date(endDate)) {
+        alert('Tanggal “Dari” harus lebih awal dari “Sampai”!');
+        // Tukar otomatis
+        [startDate, endDate] = [endDate, startDate];
+        document.getElementById('startDate').value = startDate;
+        document.getElementById('endDate').value = endDate;
+    }
+    // ... lanjutkan
+}
+
+complete: function(results) {
+    if (results.errors.length) {
+        console.error(results.errors);
+        alert('Gagal parse CSV: ' + results.errors[0].message);
+        return;
+    }
+    // ...
+},
+error: function(err) {
+    alert('Gagal mengambil file CSV. Periksa URL dan koneksi.');
+    console.error(err);
+}
