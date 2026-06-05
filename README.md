@@ -1,0 +1,2 @@
+# emas
+analis pergerakkan emas
